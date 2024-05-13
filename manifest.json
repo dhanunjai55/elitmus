@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Activity Time Tracker",
+  "name": "Activity Tracker",
   "version": "1.0",
   "description": "Track the amount of time spent on each website.",
   "permissions": [
