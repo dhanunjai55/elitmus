@@ -10,8 +10,6 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         const minutes = Math.floor((timeSpent % 3600000) / 60000);
         const seconds = ((timeSpent % 60000) / 1000).toFixed(0);
 
-        document.getElementById('hours').textContent = 'Hours: ' + hours;
-        document.getElementById('minutes').textContent = 'Minutes: ' + minutes;
-        document.getElementById('seconds').textContent = 'Seconds: ' + seconds;
+        document.getElementById('timespent').textContent ="Time Spent = "+hours+" hr  "+minutes+" min "+seconds+" sec"; 
     });
 });
