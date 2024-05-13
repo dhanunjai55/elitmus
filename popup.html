@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Activity Time Tracker</title>
-</head>
-<body>
-    <h1>Activity Time Tracker</h1>
-    <div id="time">
-    <div id="website">Website: N/A</div>
-    <div id="path">Path: N/A</div>
-    <div id="hours">Loading...</div>
-    <div id="minutes">Loading...</div>
-    <div id="seconds">Loading...</div>
-    </div>
-    <script src="popup.js"></script>
-</body>
-</html>
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    const url = new URL(tabs[0].url);
+    const fullPath = url.hostname + url.pathname;
+    document.getElementById('website').textContent = 'Website: ' + url.hostname;
+    document.getElementById('path').textContent = 'Path: ' + url.pathname;
+
+    chrome.storage.local.get([fullPath], function(result) {
+        const timeSpent = result[fullPath] || 0;
+        const hours = Math.floor(timeSpent / 3600000);
+        const minutes = Math.floor((timeSpent % 3600000) / 60000);
+        const seconds = ((timeSpent % 60000) / 1000).toFixed(0);
+
+        document.getElementById('timespent').textContent ="Time Spent = "+hours+" hr  "+minutes+" min "+seconds+" sec"; 
+    });
+});
